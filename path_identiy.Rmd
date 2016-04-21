@@ -1,0 +1,25 @@
+---
+title: "paths_identity"
+author: "Alison Baylay"
+date: "14 April 2016"
+output: html_document
+---
+
+```{r}
+library(ggplot2)
+
+df101 <- read.delim('sim_IMS101/unique_genes_paths.tsv', header=T)[,1:11]
+df101['Mean.hit.identity'] <- as.numeric(gsub('%','',df101$Mean.hit.identity))
+head(df101)
+df004 <- read.delim('004/unique_genes_paths.tsv', header=T)[,1:11]
+df004['Mean.hit.identity'] <- as.numeric(gsub('%','',df004$Mean.hit.identity))
+#df019 <- read.delim('019/unique_genes_paths.tsv', header=T)[,1:11]
+#df019['Mean.hit.identity'] <- as.numeric(gsub('%','',df019$Mean.hit.identity))
+
+
+ggplot(df101, aes(Query, Mean.hit.identity)) + geom_point() + geom_density2d()
+ggplot(df004, aes(Query, Mean.hit.identity)) + geom_point() + geom_density2d()
+#ggplot(df019, aes(Query, Mean.hit.identity)) + geom_point() + geom_density2d()
+
+```
+
